@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from zify_logic import zify_word
-from flask_cors import CORS
 
 app = Flask(__name__)
 

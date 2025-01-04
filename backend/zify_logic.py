@@ -1,7 +1,6 @@
 def zify_word(word):
     """
     Z-ifies a word based on simple linguistic rules:
-    - Replace the first consonant with 'Z' if it flows better.
     - Add 'Z' as a prefix if the first letter is a vowel.
     - Handle special blends (e.g., "ch", "sh").
     """
