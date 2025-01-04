@@ -2,7 +2,8 @@ def zify_word(word):
     """
     Z-ifies a word based on simple linguistic rules:
     - Add 'Z' as a prefix if the first letter is a vowel.
-    - Handle special blends (e.g., "ch", "sh").
+    - Remove common blends (e.g., "sh", "ch") and replace with 'Z'.
+    - Replace the first consonant with 'Z' if none of the above applies.
     """
     vowels = {'a', 'e', 'i', 'o', 'u'}
     first_letter = word[0].lower()
@@ -11,10 +12,10 @@ def zify_word(word):
     if first_letter in vowels:
         return "Z" + word
 
-    # Rule 2: Check for common blends
-    blends = {"sh", "ch", "th", "ph", "bl", "br"}
-    if word[:2].lower() in blends:
-        return "Z" + word[2:]
+    # Rule 2: Handle common blends
+    blends = {"sh", "ch", "th", "ph", "bl", "br", "cl", "cr", "fl", "fr", "gl", "gr", "pl", "pr", "sl", "sp", "st", "tr", "wh"}
+    if len(word) > 1 and word[:2].lower() in blends:
+        return "Z" + word[2:]  # Skip the first two letters (blend)
 
     # Rule 3: Default to replacing the first consonant with 'Z'
     return "Z" + word[1:]
