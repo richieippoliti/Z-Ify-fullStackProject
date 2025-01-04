@@ -6,15 +6,25 @@ function App() {
   const [zifiedWord, setZifiedWord] = useState("");
 
   const handleZify = async () => {
-    const response = await fetch("http://127.0.0.1:5000/zify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ word }),
-    });
-    const data = await response.json();
-    setZifiedWord(data.zified_word);
+    try {
+      const response = await fetch("http://127.0.0.1:5000/zify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ word }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to connect to the backend");
+      }
+
+      const data = await response.json();
+      setZifiedWord(data.zified_word);
+    } catch (error) {
+      console.error("Error connecting to the backend:", error);
+      setZifiedWord("Error: Unable to Z-ify the word.");
+    }
   };
 
   return (
@@ -34,13 +44,13 @@ function App() {
         </p>
         <ul className="example-list">
           <li>
-            <strong>Fortnite</strong> → <strong>Zortnite</strong>
+            <strong>Bowling</strong> → <strong>Zowling</strong>
           </li>
           <li>
-            <strong>Bees</strong> → <strong>Zees</strong>
+            <strong>Apples</strong> → <strong>Zapples</strong>
           </li>
           <li>
-            <strong>Plans?</strong> → <strong>Zlans</strong>
+            <strong>Fun</strong> → <strong>Zun</strong>
           </li>
         </ul>
       </div>
