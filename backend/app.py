@@ -6,12 +6,6 @@ import os
 app = Flask(__name__)
 CORS(app)  # Enable CORS
 
-@app.route('/')
-def home():
-    """Health check or welcome route."""
-    return jsonify({"message": "Welcome to the Z-ify API!"})
-
-
 @app.route('/zify', methods=['POST'])
 def zify():
     """Endpoint to Z-ify a word."""
