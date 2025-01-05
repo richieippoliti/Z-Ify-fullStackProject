@@ -4,9 +4,9 @@ from zify_logic import zify_word
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "https://z-ify.onrender.com"}})
+CORS(app)
 
-@app.route('/api/zify', methods=['POST'])
+@app.route('/zify', methods=['POST'])
 def zify():
     """Endpoint to Z-ify a word."""
     if not request.is_json:
