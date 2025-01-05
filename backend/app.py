@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from zify_logic import zify_word
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS
@@ -9,6 +10,7 @@ CORS(app)  # Enable CORS
 def home():
     """Health check or welcome route."""
     return jsonify({"message": "Welcome to the Z-ify API!"})
+
 
 @app.route('/zify', methods=['POST'])
 def zify():
@@ -24,6 +26,20 @@ def zify():
 
     zified_word = zify_word(word)  # Apply the Z-ify logic
     return jsonify({"original_word": word, "zified_word": zified_word})
+
+frontend_folder = os.path.join(os.getcwd(), "..", "frontend", "dist")
+
+@app.route("/", defaults={"filename": "index.html"})
+@app.route("/<path:filename>")
+def serve_frontend(filename):
+    """Serve the React frontend."""
+    if filename == "index.html" or not filename:
+        return send_from_directory(frontend_folder, "index.html")
+    file_path = os.path.join(frontend_folder, filename)
+    if os.path.exists(file_path):
+        return send_from_directory(frontend_folder, filename)
+    return send_from_directory(frontend_folder, "index.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
