@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./App.css";
 
+// Dynamic BASE_URL for development and production
+export const BASE_URL = import.meta.env.MODE === "development" 
+  ? "http://127.0.0.1:5000/api"  // Local development backend
+  : "/api";  // Production backend
+
 function App() {
   const [word, setWord] = useState("");
   const [zifiedWord, setZifiedWord] = useState("");
 
   const handleZify = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api", {
+      const response = await fetch(`${BASE_URL}/zify`, {  // Use dynamic BASE_URL
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +25,7 @@ function App() {
       }
 
       const data = await response.json();
-      setZifiedWord(data.zified_word);
+      setZifiedWord(data.zified_word); // Set the Z-ified word from the response
     } catch (error) {
       console.error("Error connecting to the backend:", error);
       setZifiedWord("Error: Unable to Z-ify the word.");
