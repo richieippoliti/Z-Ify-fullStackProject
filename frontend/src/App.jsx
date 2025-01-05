@@ -39,18 +39,17 @@ function App() {
       <button onClick={handleZify}>Z-ify</button>
       <div className="info-box">
         <p className="description-text">
-          Z-ifying is the future of slang. Don’t feel like <strong>Bowling</strong>? Just say <strong>Zowling</strong>! Add a "Z" to flip the meaning of any word and keep it cool. 
-          For example:
+        Z-ifying is the future of slang. Don’t feel like <strong>Bowling</strong>? Just say <strong>Zowling</strong>. Add a "Z" to flip the meaning of any word and keep it cool. For example:
         </p>
         <ul className="example-list">
           <li>
-            <strong>Bowling</strong> → <strong>Zowling</strong>
+          <strong>Iceskating</strong> → <strong>Ziceskating</strong>
           </li>
           <li>
-            <strong>Apples</strong> → <strong>Zapples</strong>
+          <strong>Fishing</strong> → <strong>Zishing</strong>
           </li>
           <li>
-            <strong>Fun</strong> → <strong>Zun</strong>
+          <strong>Plans?</strong> → <strong>Zlans</strong>
           </li>
         </ul>
       </div>
