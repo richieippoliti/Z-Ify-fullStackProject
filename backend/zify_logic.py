@@ -8,12 +8,19 @@ def zify_word(word):
     vowels = {'a', 'e', 'i', 'o', 'u'}
     first_letter = word[0].lower()
 
+    if " " in word:
+        return "Error: Input must be a single word."
+
+    negative_words = {"no", "nope", "nah"}
+    if word.lower() in negative_words:
+        return "Z"
+
     # Rule 1: If the first letter is a vowel, add 'Z' as a prefix
     if first_letter in vowels:
-        return "Z" + word
+        return "Z" + word.lower()
 
-    # Rule 2: Handle common blends
-    blends = {"sh", "ch", "th", "ph", "bl", "br", "cl", "cr", "fl", "fr", "gl", "gr", "pl", "pr", "sl", "sp", "st", "tr", "wh"}
+    #Rule 2: Handle common blends
+    blends = {"sh", "ch", "th", "ph", "sp", "tr", "wh"}
     if len(word) > 1 and word[:2].lower() in blends:
         return "Z" + word[2:]  # Skip the first two letters (blend)
 
