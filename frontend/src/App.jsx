@@ -4,7 +4,7 @@ import "./App.css";
 // Dynamic BASE_URL for development and production
 export const BASE_URL = import.meta.env.MODE === "development" 
   ? "http://127.0.0.1:5000/api"  // Local development backend
-  : "https://z-ify.onrender.com/api";  // Production backend
+  : "/api";  // Production backend
 
 function App() {
   const [word, setWord] = useState("");
