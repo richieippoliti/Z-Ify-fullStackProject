@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/zify', methods=['POST'])
+@app.route('/api/zify', methods=['POST'])
 def zify():
     """Endpoint to Z-ify a word."""
     if not request.is_json:
